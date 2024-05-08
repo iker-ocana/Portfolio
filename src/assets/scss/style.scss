@@ -1,0 +1,321 @@
+/** MAIN APP CSS **/
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	font-weight: normal;
+}
+
+:root {
+	[color-scheme='dark'] {
+		--main_background_color: #181818;
+		--main_text_color: rgb(228, 228, 228);
+		--second_text_color: #a8a8a8;
+	}
+
+	[color-scheme='light'] {
+		--main_background_color: rgb(228, 228, 228);
+		--main_text_color: #181818;
+		--second_text_color: #383838;
+	}
+}
+
+#portfolio,
+html,
+header,
+footer,
+body,
+#app {
+	height: 100%;
+	background-color: var(--main_background_color);
+}
+
+#portfolio {
+	display: flex;
+	flex-direction: column;
+}
+
+header,
+footer {
+	flex: 1;
+}
+
+main {
+	flex: 8;
+	max-width: 1280px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+header,
+footer,
+main {
+	padding: 10px 20px;
+}
+
+a {
+	text-decoration: none;
+	margin: 3px;
+}
+
+p{
+	letter-spacing: 0.056em;
+	line-height: 1.9;
+}
+
+.bold{
+	font-weight: bolder;
+}
+
+.italic-font{
+	font-style: italic;
+}
+
+#main-content {
+	position: relative;
+	z-index: 2;
+	padding: 2rem 4rem;
+}
+
+.full-height{
+	height: 100%;
+}
+
+.flex{
+	display: flex;
+}
+
+.flex-centered{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.flex_between{
+	display: flex;
+	justify-content: space-between;
+}
+
+.flex-between-column{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.centered {
+	align-items: center;
+	text-align: center;
+}
+
+.text-centered{
+	text-align: center;
+}
+
+.back-panel, .next-panel {
+	position: absolute;
+	z-index: 2;
+	img {
+		width: 40px;
+		height: 40px;
+		cursor: pointer;
+	}
+}
+
+.next-panel {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: .75rem;
+}
+
+.back-panel {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: .75rem;
+	transform: rotate(180deg);
+	z-index: 3;
+}
+
+.transition-component-enter-from,
+.transition-component-leave-to {
+	opacity: 0;
+}
+
+.transition-component-enter-to,
+.transition-component-leave-from {
+	opacity: 1;
+}
+
+.transition-component-enter-active {
+	transition: all 1.6s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.transition-component-leave-active {
+	transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+/** MAIN APP CSS **/
+
+/** Theme Selector SCSS **/
+@import './themeSelector';
+/** Theme Selector SCSS **/
+
+/** Panel guide CSS **/
+@import './panelGuide';
+/** Panel guide CSS **/
+
+/** First panel CSS **/
+@import './firstPanel';
+/** First panel CSS **/
+
+/** Second panel CSS **/
+@import './secondPanel';
+/** Second panel CSS **/
+
+/** Third panel CSS **/
+@import './thirdPanel';
+/** Third panel CSS **/
+
+/** Fourth panel CSS **/
+@import './fourthPanel';
+/** Third panel CSS **/
+
+/** Footer CSS **/
+@import './footer';
+/** Footer CSS **/
+
+body {
+	background-color: var(--main_background_color);
+
+	div {
+		background-color: var(--main_background_color);
+	}
+
+	h1, h2, p, ol, ul, span  {
+		color: var(--main_text_color);
+	}
+
+	h3{
+		color: var(--second_text_color);
+	}
+
+	min-height: 100vh;
+	transition:color 0.5s,
+	background-color 0.5s;
+	line-height: 1.6;
+	font-family: Inter,
+	-apple-system,
+	BlinkMacSystemFont,
+	'Segoe UI',
+	Roboto,
+	Oxygen,
+	Ubuntu,
+	Cantarell,
+	'Fira Sans',
+	'Droid Sans',
+	'Helvetica Neue',
+	sans-serif;
+	font-size: 16px;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.logo-container{
+	background-color: transparent;
+	.logo{
+		width: 40px;
+		height: 40px;
+		margin: 0 7px;
+	}
+}
+
+.border-top-svg{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.border-bot-svg{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+#svggradient-top, #svggradient-bottom{
+	.gradient1{
+		stop-color: #616161;
+	}
+
+	.gradient2{
+		stop-color: #333;
+	}
+
+	.gradient3{
+		stop-color: #616161;
+	}
+}
+
+.no-background {
+	background-color: transparent;
+}
+
+.fade-up {
+	opacity: 0;
+	animation: fade-up 1s forwards cubic-bezier(.2, 2, .4, 1);
+	animation-delay: .25s;
+
+	&.second-delay {
+		animation-delay: .5s;
+	}
+
+	&.third-delay {
+		animation-delay: .75s;
+	}
+}
+
+@keyframes fade-up {
+	from {
+		transform: translateY(-100px);
+		opacity: 0;
+	}
+
+	to {
+		transform: none;
+		opacity: 1;
+	}
+}
+
+@media (max-width: 900px) and (orientation:portrait){
+	body{
+		font-size: 13px;
+	}
+	
+	.next-panel{
+		right: 1.25rem;
+	}
+	
+	.back-panel{
+		left: 1.25rem;
+	}
+
+	.back-panel, .next-panel {
+		position: fixed;
+		img {
+			width: 25px;
+			height: 25px;
+		}
+	}
+}

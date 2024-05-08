@@ -1,0 +1,11 @@
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+@media (max-width: 900px) and (orientation:portrait){
+    footer{
+        flex-direction: column;
+    }
+}

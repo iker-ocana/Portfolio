@@ -1,0 +1,25 @@
+#panel-guide{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    span{
+        margin: 0 0.75rem;
+        &.panel-guide__item{
+            cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: 900px) and (orientation:portrait){
+    #panel-guide{
+        justify-content: space-around;
+        width: auto;
+        height: auto;
+        margin: 0.75rem 0;
+        span{
+            margin: 0;
+        }
+    }
+}

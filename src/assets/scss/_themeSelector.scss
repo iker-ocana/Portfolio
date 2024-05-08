@@ -1,0 +1,70 @@
+#theme-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  z-index: 2;
+
+  .theme-container__switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 24px;
+
+    input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .theme-container__ball {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: all 1.5s ease-in-out;
+      border: 1px solid var(--second_text_color);
+
+      &:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 4px;
+        bottom: 3px;
+        background-color: white;
+        transition: all 1.5s ease-in-out;
+      }
+    }
+
+    input:checked + .theme-container__ball {
+      background-color: var(--main_background_color);
+    }
+
+    input:focus + .theme-container__ball {
+      box-shadow: 0 0 1px var(--main_background_color);
+    }
+
+    input:checked + .theme-container__ball:before {
+      transform: translateX(26px);
+    }
+  }
+
+  .theme-container__ball.round {
+    border-radius: 34px;
+
+    &:before {
+      border-radius: 50%;
+    }
+  }
+}
+
+ @media (max-width: 900px) and (orientation:portrait) {
+  #theme-container{
+    position: unset;
+    z-index: 0;
+  }
+ }

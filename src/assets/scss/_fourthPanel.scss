@@ -1,0 +1,131 @@
+#knowledge {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+
+    #knowledge__container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        /* Los elementos se ajustarán automáticamente al tamaño del contenedor */
+        place-items: center;
+        gap: 10px;
+        /* Espacio entre los elementos */
+        padding: 10px;
+        /* Espacio interno del contenedor */
+        .item {
+            transform-style: preserve-3d;
+            animation: rotate 5s infinite linear;
+            width: 70px;
+            height: 70px;
+            text-align: center;
+            cursor: pointer;
+        
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .knowledge__expand {
+        overflow: hidden;
+        height: 300px;
+        position: relative;
+        border: 1px solid var(--main_text_color);
+        border-radius: 10px;
+        margin: 0 45px;
+    
+        .knowledge_list{
+            display: flex;
+            height: 100%;
+            overflow-y: scroll;
+            padding: 1.25rem 1rem 1.25rem 0;
+            transition: all 1s;
+        }
+
+        .circle {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0vw;
+            /* Tamaño inicial del círculo */
+            height: 0vw;
+            /* Tamaño inicial del círculo */
+            /* background-color: rgba(0, 0, 0, 0.5); */
+            background-color: var(--main_text_color);
+            /* Color de fondo del círculo */
+            border-radius: 50%;
+            /* Hace que el elemento sea un círculo */
+            &.circle_cover{
+                animation: expandCircle 1.5s forwards;
+                z-index: 2;
+            }
+        }
+
+        .moving-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* transform: translate(-50%, -50%); */
+            width: 20px; /* Tamaño inicial del círculo */
+            height: 20px; /* Tamaño inicial del círculo */
+            background-color: var(--main_text_color);
+            border-radius: 50%; /* Hace que el elemento sea un círculo */
+            transition-duration: 5s;
+        
+            &.moving-circle-opacity{
+                transition-duration: 1s;
+                opacity: 0;
+            }
+        }
+
+        .onComponentEnter{
+            opacity: 0;
+            transition: all 1s;
+        }
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotateY(0);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes expandCircle {
+    0% {
+        width: 0vw;
+        /* Tamaño inicial del círculo */
+        height: 0vw;
+        /* Tamaño inicial del círculo */
+    }
+
+    50% {
+        width: 200vw;
+        /* Ancho del círculo en unidades de ancho de ventana */
+        height: 200vw;
+        /* Alto del círculo en unidades de ancho de ventana */
+    }
+
+    100%{
+        width: 0vw;
+        /* Tamaño inicial del círculo */
+        height: 0vw;
+        /* Tamaño inicial del círculo */
+    }
+}
+
+@media (max-width: 900px) and (orientation:portrait){
+    #knowledge{
+        .knowledge__expand{
+            margin: 0;
+        }
+    }
+}
