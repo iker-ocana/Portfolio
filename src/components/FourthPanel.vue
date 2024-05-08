@@ -105,7 +105,7 @@ onMounted(() => {
     }
 
     randomCircleMovement();
-    intervalCircleMovement.value = setInterval(randomCircleMovement, 2500);
+    intervalCircleMovement.value = window.setInterval(randomCircleMovement, 2500);
 });
 
 onBeforeUnmount(() => {
