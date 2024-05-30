@@ -2,9 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  z-index: 2;
-
+  justify-content: center;
+  
   .theme-container__switch {
     position: relative;
     display: inline-block;

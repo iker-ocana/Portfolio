@@ -1,6 +1,6 @@
 <template>
   <div id="portfolio">
-    <header>
+    <header class="flex_between">
       <themeSelector />
       <PanelGuide @panelChange="interactivePanel" />
     </header>
@@ -8,7 +8,7 @@
 
     <div class="back-panel no-background">
       <picture>
-        <img :src="imageURL" loading="lazy" @click="interactivePanel('backwards')" />
+        <img :src="imageURL" alt="Panel anterior" @click="interactivePanel('backwards')" />
       </picture>
     </div>
 
@@ -20,7 +20,7 @@
 
     <div class="next-panel no-background">
       <picture>
-        <img :src="imageURL" loading="lazy" @click="interactivePanel('forward')" />
+        <img :src="imageURL" alt="Siguiente panel" @click="interactivePanel('forward')" />
       </picture>
     </div>
 
@@ -36,18 +36,18 @@ import secondPanel from '@/components/SecondPanel.vue'
 import thirdPanel from '@/components/ThirdPanel.vue'
 import fourthPanel from '@/components/FourthPanel.vue'
 import FooterApp from '@/components/Footer.vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, type Component} from 'vue'
 
-const resumeComponents = [
+const resumeComponents: Array<Component> = [
   firstPanel,
   secondPanel,
   thirdPanel,
   fourthPanel
 ]
 
-const currentResumeComponent = ref(0)
+const currentResumeComponent = ref<number>(0)
 
-const interactivePanel = (direction: String, panelNumber = 0) => {
+const interactivePanel = (direction: String, panelNumber = 0): void => {
   if (direction == 'forward' && currentResumeComponent.value < resumeComponents.length - 1) {
     currentResumeComponent.value += 1
   } else if (direction == 'backwards' && currentResumeComponent.value > 0) {
@@ -57,9 +57,9 @@ const interactivePanel = (direction: String, panelNumber = 0) => {
   }
 }
 
-const darkArrow = new URL(`./img/next_img.png`, import.meta.url).href;
-const whiteArrow = new URL(`./img/next_img_white.png`, import.meta.url).href;
-const imageURL = ref(whiteArrow);
+const darkArrow: string = new URL(`./img/next_img.png`, import.meta.url).href;
+const whiteArrow: string = new URL(`./img/next_img_white.png`, import.meta.url).href;
+const imageURL = ref<string>(whiteArrow);
 const mutationObserverRef = ref<MutationObserver | String>('');
 
 onMounted(() => {

@@ -3,7 +3,7 @@
         <borderTopSVG />
         <section id="second__container">
             <div class="frame-image flex centered">
-                <img src="../img/foto-frontal.jpg"/>
+                <img src="../img/foto-frontal.jpg" alt="Foto frontal" />
             </div>
 
             <div>

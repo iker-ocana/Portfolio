@@ -6,11 +6,11 @@
             <p class="fade-up second-delay">Full-Stack Junior Developer</p>
             <div class="logo-container fade-up third-delay">
                 <picture>
-                    <a href="https://www.linkedin.com/in/iker-oca%C3%B1a-7b30b41ba/" target="_blank"><img class="logo" src="../img/linkedin-logo.png" loading="lazy"></a>
+                    <a href="https://www.linkedin.com/in/iker-oca%C3%B1a-7b30b41ba/" target="_blank"><img class="logo" src="../img/linkedin-logo.png" alt="Link a linkedin"></a>
                 </picture>
 
                 <picture>
-                    <a href="https://github.com/iker-ocana" target="_blank"><img class="logo" src="../img/github-logo.png" loading="lazy"></a>
+                    <a href="https://github.com/iker-ocana" target="_blank"><img class="logo" src="../img/github-logo.png" alt="Link a github"></a>
                 </picture>
             </div>
         </div>

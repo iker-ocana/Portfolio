@@ -7,7 +7,7 @@
 
         <section id="knowledge__container">
             <div v-for="item in knowledge" class="item" @click="knowledgeSwap(item.panel)">
-                <img :src="getLogoImgUrl(item.logo)">
+                <img :src="getLogoImgUrl(item.logo)" :alt="item.logo.split('.')[0]">
             </div>
         </section>
 
@@ -15,7 +15,7 @@
             <div class="circle" :class="{ 'circle_cover': circleCover }"></div>
             <div class="moving-circle" :class="{ 'moving-circle-opacity': miniCirclesOff }" v-for="circle in 6"
                 ref="movingCircles"></div>
-            <Transition appear name="transition-component" mode="out-in" @onBeforeLeave="onLeave" @onBeforeEnter="onEnter">
+            <Transition appear name="transition-component" mode="out-in" @beforeLeave="onLeave" @beforeEnter="onEnter">
                 <component :is='knowledgePanel' :class="{ 'onComponentEnter': onComponentEnter }"></component>
             </Transition>
         </section>
@@ -37,18 +37,23 @@ import jQuery from './knowledge/JQuery.vue';
 import git from './knowledge/Git.vue';
 import jira from './knowledge/Jira.vue';
 
-import { ref, shallowRef, onMounted, onBeforeUnmount, type Component } from 'vue';
+import { ref, shallowRef, onMounted, onBeforeUnmount, type Component, type Ref} from 'vue';
 
-const knowledgePanel = shallowRef();
-const circleCover = ref(false);
-const onComponentEnter = ref(false);
-const miniCirclesOff = ref(false);
+interface KnowledgeItem {
+  panel: Component;
+  logo: string;
+}
 
-const knowledgeContainer = ref();
-const movingCircles = ref();
-const intervalCircleMovement = ref(0);
+const knowledgePanel: Component = shallowRef();
+const circleCover = ref<boolean>(false);
+const onComponentEnter = ref<boolean>(false);
+const miniCirclesOff = ref<boolean>(false);
 
-const knowledge = shallowRef([
+const knowledgeContainer= ref<HTMLElement>();
+const movingCircles = ref<HTMLDivElement[]>([]);
+const intervalCircleMovement = ref<number>(0);
+
+const knowledge: Ref<KnowledgeItem[]> = shallowRef([
     { panel: vue, logo: "vue-logo.png" },
     { panel: react, logo: "react-logo.png" },
     { panel: javascript, logo: "javascript-logo.png" },
@@ -60,11 +65,11 @@ const knowledge = shallowRef([
     { panel: jira, logo: "jira-logo.png" }
 ])
 
-const getLogoImgUrl = (name: string) => {
+const getLogoImgUrl = (name: string): string => {
     return new URL(`../img/${name}`, import.meta.url).href
 }
 
-const knowledgeSwap = (knowledgeItem: Component) => {
+const knowledgeSwap = (knowledgeItem: Component): void => {
     circleCover.value = true;
     if (knowledgePanel.value != knowledgeItem) {
         miniCirclesOff.value = true;
@@ -80,22 +85,20 @@ const knowledgeSwap = (knowledgeItem: Component) => {
     }
 }
 
-const onLeave = () => {
+const onLeave = (): void => {
     onComponentEnter.value = true;
 }
 
-const onEnter = () => {
+const onEnter = (): void => {
     onComponentEnter.value = false;
 }
 
 onMounted(() => {
-    const randomCircleMovement = () => {
-        const width = knowledgeContainer.value.offsetWidth;
-        const height = knowledgeContainer.value.offsetHeight;
-        const x = Math.random() * width;
-        const y = Math.random() * height;
+    const randomCircleMovement = ():void => {
+        const width = knowledgeContainer.value?.offsetWidth;
+        const height = knowledgeContainer.value?.offsetHeight;
 
-        Array.from(movingCircles.value as HTMLDivElement[]).forEach(circle => {
+        movingCircles.value.forEach(circle => {
             const top = (Math.floor(Math.random() * 10)) * 10;
             const left = (Math.floor(Math.random() * 10)) * 10;
 
@@ -104,8 +107,8 @@ onMounted(() => {
         });
     }
 
-    randomCircleMovement();
     intervalCircleMovement.value = window.setInterval(randomCircleMovement, 2500);
+    randomCircleMovement();
 });
 
 onBeforeUnmount(() => {

@@ -7,12 +7,9 @@
     #knowledge__container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        /* Los elementos se ajustarán automáticamente al tamaño del contenedor */
         place-items: center;
         gap: 10px;
-        /* Espacio entre los elementos */
         padding: 10px;
-        /* Espacio interno del contenedor */
         .item {
             transform-style: preserve-3d;
             animation: rotate 5s infinite linear;
@@ -51,14 +48,9 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 0vw;
-            /* Tamaño inicial del círculo */
             height: 0vw;
-            /* Tamaño inicial del círculo */
-            /* background-color: rgba(0, 0, 0, 0.5); */
             background-color: var(--main_text_color);
-            /* Color de fondo del círculo */
             border-radius: 50%;
-            /* Hace que el elemento sea un círculo */
             &.circle_cover{
                 animation: expandCircle 1.5s forwards;
                 z-index: 2;
@@ -69,11 +61,10 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            /* transform: translate(-50%, -50%); */
-            width: 20px; /* Tamaño inicial del círculo */
-            height: 20px; /* Tamaño inicial del círculo */
+            width: 20px;
+            height: 20px;
             background-color: var(--main_text_color);
-            border-radius: 50%; /* Hace que el elemento sea un círculo */
+            border-radius: 50%;
             transition-duration: 5s;
         
             &.moving-circle-opacity{
@@ -102,23 +93,17 @@
 @keyframes expandCircle {
     0% {
         width: 0vw;
-        /* Tamaño inicial del círculo */
         height: 0vw;
-        /* Tamaño inicial del círculo */
     }
 
     50% {
         width: 200vw;
-        /* Ancho del círculo en unidades de ancho de ventana */
         height: 200vw;
-        /* Alto del círculo en unidades de ancho de ventana */
     }
 
     100%{
         width: 0vw;
-        /* Tamaño inicial del círculo */
         height: 0vw;
-        /* Tamaño inicial del círculo */
     }
 }
 
